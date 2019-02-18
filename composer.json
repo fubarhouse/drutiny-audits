@@ -2,6 +2,6 @@
     "name": "fubarhouse/drutiny-audits",
     "description": "A suite of modern Drutiny audits.",
     "require": {
-        "php": "^7",
+        "php": "^7"
     }
 }
