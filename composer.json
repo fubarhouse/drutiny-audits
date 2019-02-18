@@ -1,0 +1,7 @@
+{
+    "name": "fubarhouse/drutiny-audits",
+    "description": "A suite of modern Drutiny audits.",
+    "require": {
+        "php": "^7.1 || ^7.2",
+    }
+}
