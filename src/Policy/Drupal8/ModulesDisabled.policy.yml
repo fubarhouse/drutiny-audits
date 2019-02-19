@@ -1,0 +1,21 @@
+title: Modules disabled
+name: Drupal8:ModulesDisabled
+class: \Drutiny\Fubarhouse\Audit\Drupal8\ModulesDisabled
+tags:
+  - Drupal 8
+description: "Check that a set of modules are uninstalled."
+remediation: "Uninstall the modules through the Drupal admin UI or drush pmu command."
+success: |
+  All modules are disabled: {{disabled}}.
+failure: |
+  The following modules are not disabled and should be:
+
+  {{#notDisabled}}
+    - `{{ . }}`
+  {{/notDisabled}}
+parameters:
+  modules:
+    type: array
+    description: The name of the modules to ensure is disabled.
+    default:
+      - syslog

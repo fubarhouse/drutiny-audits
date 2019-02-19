@@ -8,14 +8,14 @@ use Drutiny\RemediableInterface;
 use Drutiny\Annotation\Param;
 
 /**
- * Generic modules uninstalled check.
+ * Generic modules disabled check.
  * @Param(
  *  name = "modules",
- *  description = "List of modules to check that are uninstalled.",
+ *  description = "List of modules to check that are disabled.",
  *  type = "array",
  * )
  */
-class ModulesUninstalled extends Audit implements RemediableInterface {
+class ModulesDisabled extends Audit implements RemediableInterface {
 
   /**
    * @inheritdoc
@@ -26,19 +26,24 @@ class ModulesUninstalled extends Audit implements RemediableInterface {
       return TRUE;
     }
 
-    $uninstalled = [];
+    $disabled = [];
     foreach ($modules as $moduleName) {
-
-        $notUninstalled[] = $moduleName;
-
+      try {
+        if ($sandbox->drush()->moduleEnabled($moduleName)) {
+          throw new \Exception($moduleName);
+        }
+      }
+      catch (\Exception $e) {
+        $notDisabled[] = $moduleName;
+      }
     }
-    if (!empty($notUninstalled)) {
-      $sandbox->setParameter('notUninstalled', $notUninstalled);
+    if (!empty($notDisabled)) {
+      $sandbox->setParameter('notDisabled', $notDisabled);
       return FALSE;
     }
     // Seems like the best way to comma separate things.
     else {
-      $sandbox->setParameter('uninstalled', '`' . implode('`, `', $modules) . '`');
+      $sandbox->setParameter('disabled', '`' . implode('`, `', $modules) . '`');
     }
 
     return TRUE;
