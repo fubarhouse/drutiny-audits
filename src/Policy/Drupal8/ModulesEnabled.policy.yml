@@ -1,0 +1,21 @@
+title: Modules enabled
+name: Drupal8:ModulesEnabled
+class: \Drutiny\Fubarhouse\Audit\Drupal8\ModulesEnabled
+tags:
+  - Drupal 8
+description: "Check that a set of modules are enabled."
+remediation: "Enable the modules through the Drupal admin UI or drush en command."
+success: |
+  All modules are enabled: {{enabled}}.
+failure: |
+  The following modules are not enabled and should be:
+
+  {{#notEnabled}}
+    - `{{ . }}`
+  {{/notEnabled}}
+parameters:
+  modules:
+    type: array
+    description: The name of the modules to ensure is enabled.
+    default:
+      - syslog
