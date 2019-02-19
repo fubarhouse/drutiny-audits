@@ -6,7 +6,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Fubarhouse\\Drutiny\\": "src/"
+            "Fubarhouse\\Drutiny\\": "src/",
+            "Fubarhouse\\Drutiny\\Audit\\Drupal7\\": "src/Audit/Drupal7/",
+            "Fubarhouse\\Drutiny\\Audit\\Drupal8\\": "src/Audit/Drupal8/"
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Fubarhouse\Drutiny\Audit;
+namespace Drutiny\Fubarhouse\Audit\Drupal8;
 
 use Drutiny\Audit;
 use Drutiny\Sandbox\Sandbox;
