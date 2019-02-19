@@ -34,7 +34,7 @@ parameters:
       Expression maybe a regular expression to match patterns.
   uid:
     default: 1
-    type: int
+    type: integer
     description: |
       User Identifier (UID) of the given user to subject the assessment to.
   email:
