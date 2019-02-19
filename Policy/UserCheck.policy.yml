@@ -1,6 +1,6 @@
 title: "User account security validation"
 name: Drupal-8:UserLockDown
-class: \Drutiny\Plugin\Fubarhouse\Drupal8\Audit\UserCheck
+class: \Fubarhouse\Drutiny\Audit\UserCheck
 tags:
   - Drupal 8
   - Best Practice

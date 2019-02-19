@@ -3,5 +3,10 @@
     "description": "A suite of modern Drutiny audits.",
     "require": {
         "php": "^7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fubarhouse\\Drutiny\\": "src/"
+        }
     }
 }
