@@ -1,0 +1,21 @@
+title: Modules uninstalled
+name: Drupal8:ModulesUninstalled
+class: \Drutiny\Fubarhouse\Audit\Drupal8\ModulesUninstalled
+tags:
+  - Drupal 8
+description: "Check that a set of modules are uninstalled."
+remediation: "Uninstall the modules through the Drupal admin UI or drush pmu command."
+success: |
+  All modules are uninstalled: {{uninstalled}}.
+failure: |
+  The following modules are not uninstalled and should be:
+
+  {{#notUninstalled}}
+    - `{{ . }}`
+  {{/notUninstalled}}
+parameters:
+  modules:
+    type: array
+    description: The name of the modules to ensure is uninstalled.
+    default:
+      - syslog
