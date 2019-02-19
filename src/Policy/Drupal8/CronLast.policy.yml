@@ -1,6 +1,6 @@
 title: "Cron running regularly"
 name: Drupal8:CronLast
-class: \Fubarhouse\Drutiny\Audit\Drupal8\CronLast
+class: \Drutiny\Fubarhouse\Audit\Drupal8\CronLast
 tags:
   - Drupal 8
 description: |
