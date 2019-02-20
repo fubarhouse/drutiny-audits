@@ -1,21 +1,18 @@
 title: BlackList Permissions
-name: Drupal8:BlackListPermissions
-class: \Drutiny\Fubarhouse\Audit\Drupal8\BlacklistPermissions
+name: Drupal8:PermissionsBlackList
+class: \Drutiny\Fubarhouse\Audit\Drupal8\PermissionsBlacklist
 tags:
   - Drupal 8
   - Sanity
 description: Checks to ensure roles do not contain blacklisted permissions.
 remediation: Remove blacklisted permissions from roles.
-success: No blacklisted permissions in use.
+success: No blacklisted permissions were found in use.
 failure: |
-  The following permissions should not be configured
+  The following permissions should not be assigned to the configured roles:
 
-  {{# roles }}
-    * {{ role }}: {{# perms }}
-      * {{ . }}
-    {{/ perms }}
-  {{/ roles }}
-
+  {{#blacklistedPermissions}}
+    - {{ . }}
+  {{/blacklistedPermissions}}
 parameters:
   roles:
     type: array

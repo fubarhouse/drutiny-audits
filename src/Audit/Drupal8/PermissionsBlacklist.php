@@ -19,12 +19,30 @@ use Drutiny\Annotation\Param;
  *  type = "array"
  * )
  */
-class BlacklistPermissions extends Audit {
+class PermissionsBlacklist extends Audit {
 
   /**
    *
    */
   public function audit(Sandbox $sandbox) {
+    $perms = $sandbox->getParameter('permissions');
+    $roles = $sandbox->getParameter('roles');
+    foreach ($roles as $role) {
+      $config = $sandbox->drush(['format' => 'json'])->configGet("user.role.{$role}");
+      foreach ($config['permissions'] as $permission) {
+        foreach ($perms as $perm) {
+         if ($perm === $permission) {
+            $blacklistedPermissions[] = $permission;
+         }
+        }
+      }
+    }
+
+    if (empty($blacklistedPermissions)) {
+      return TRUE;
+    }
+
+    $sandbox->setParameter('blacklistedPermissions', $blacklistedPermissions);
     return FALSE;
   }
 
