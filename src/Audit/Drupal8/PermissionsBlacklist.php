@@ -31,9 +31,9 @@ class PermissionsBlacklist extends Audit {
       $config = $sandbox->drush(['format' => 'json'])->configGet("user.role.{$role}");
       foreach ($config['permissions'] as $permission) {
         foreach ($perms as $perm) {
-         if ($perm === $permission) {
+          if ($perm === $permission) {
             $blacklistedPermissions[] = $permission;
-         }
+          }
         }
       }
     }
