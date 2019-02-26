@@ -33,6 +33,9 @@ class PermissionsBlacklist extends Audit {
         foreach ($perms as $perm) {
           if ($perm === $permission) {
             $blacklistedPermissions[] = $permission;
+            if (!in_array ($role , $affectedRoles)) {
+              $affectedRoles[] = $role;
+            }
           }
         }
       }
@@ -40,6 +43,10 @@ class PermissionsBlacklist extends Audit {
 
     if (empty($blacklistedPermissions)) {
       return TRUE;
+    }
+
+    if (isset($affectedRoles)) {
+      $sandbox->setParameter('affectedRoles', $affectedRoles);
     }
 
     $sandbox->setParameter('blacklistedPermissions', $blacklistedPermissions);
