@@ -16,6 +16,6 @@ failure: |
 parameters:
   modules:
     type: array
-    description: The name of the modules to ensure is disabled.
+    description: an array of the names of modules to ensure are disabled.
     default:
       - syslog
