@@ -29,16 +29,28 @@ class PermissionsBlacklist extends Audit {
     $roles = $sandbox->getParameter('roles');
     $affectedRoles = array();
     foreach ($roles as $role) {
-      $config = $sandbox->drush(['format' => 'json'])->configGet("user.role.{$role}");
-      foreach ($config['permissions'] as $permission) {
-        foreach ($perms as $perm) {
-          if ($perm === $permission) {
-            $blacklistedPermissions[] = $permission;
-            if (!in_array ($role , $affectedRoles)) {
-              $affectedRoles[] = $role;
+      try {
+        $config = $sandbox->drush(['format' => 'json'])->configGet("user.role.{$role}");
+      }
+      catch (\Exception $e) {
+        // If the configuration object could not be found, ignore the step.
+        continue;
+      }
+      finally {
+        if (isset($config)) {
+          foreach ($config['permissions'] as $permission) {
+            foreach ($perms as $perm) {
+              if ($perm === $permission) {
+                $blacklistedPermissions[] = $permission;
+                if (!in_array($role, $affectedRoles)) {
+                  $affectedRoles[] = $role;
+                }
+              }
             }
           }
         }
+        // Cleanup to prevent memory leaks.
+        unset($config);
       }
     }
 
