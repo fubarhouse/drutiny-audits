@@ -1,6 +1,6 @@
 title: Drupal users in certain roles
 class: Drutiny\Fubarhouse\Audit\Drupal8\UserRoleCheck
-name: Drupal:UserRoleCollector
+name: Drupal8:UserRoleCollector
 tags:
   - Best Practice
   - Security
@@ -18,6 +18,9 @@ failure: |
     - {{ . }}
   {{/results}}
 parameters:
+  allowed:
+    default:
+      - 1
   roles:
     default:
       - administrator

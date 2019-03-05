@@ -4,7 +4,6 @@ namespace Drutiny\Fubarhouse\Audit\Drupal8;
 
 use Drutiny\Audit;
 use Drutiny\Sandbox\Sandbox;
-use Drutiny\RemediableInterface;
 use Drutiny\Annotation\Param;
 
 /**
@@ -12,6 +11,10 @@ use Drutiny\Annotation\Param;
  * @Param(
  *  name = "roles",
  *  description = "The machine name of the user role",
+ * )
+ * @Param(
+ *   name = "allowed",
+ *   description = "An array of user ID's to exclude from reporting",
  * )
  */
 class UserRoleCheck extends Audit {
@@ -23,6 +26,7 @@ class UserRoleCheck extends Audit {
 
     // Parameters.
     $rolesToFind = $sandbox->getParameter('roles', array("administrator"));
+    $allowedUserIDs = $sandbox->getParameter('allowed', array());
 
     // Create an empty array for users and results.
     $users = array();
@@ -44,8 +48,12 @@ class UserRoleCheck extends Audit {
     foreach ($users as $userKey => $user) {
       foreach($user['roles'] as $role) {
         foreach ($rolesToFind as $roleToFind) {
-          if ($role == $roleToFind) {
-            $results[] = "User {$user['name']} ({$user['uid']}) is in the ${role} group.";
+          foreach ($allowedUserIDs as $allowedUserID) {
+            if ($user['uid'] !== $allowedUserID) {
+              if ($role == $roleToFind) {
+                $results[] = "User {$user['name']} ({$user['uid']}) is in the ${role} group.";
+              }
+            }
           }
         }
       }
