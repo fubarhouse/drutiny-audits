@@ -27,6 +27,7 @@ class PermissionsBlacklist extends Audit {
   public function audit(Sandbox $sandbox) {
     $perms = $sandbox->getParameter('permissions');
     $roles = $sandbox->getParameter('roles');
+    $affectedRoles = array();
     foreach ($roles as $role) {
       $config = $sandbox->drush(['format' => 'json'])->configGet("user.role.{$role}");
       foreach ($config['permissions'] as $permission) {
@@ -45,7 +46,7 @@ class PermissionsBlacklist extends Audit {
       return TRUE;
     }
 
-    if (isset($affectedRoles)) {
+    if (!empty($affectedRoles)) {
       $sandbox->setParameter('affectedRoles', $affectedRoles);
     }
 
