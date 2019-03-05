@@ -1,6 +1,6 @@
 title: Drupal users in certain roles
 class: Drutiny\Fubarhouse\Audit\Drupal8\UserRoleCheck
-name: Drupal:ThemeSecurity
+name: Drupal:UserRoleCollector
 tags:
   - Best Practice
   - Security
