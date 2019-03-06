@@ -21,6 +21,12 @@ class UserRoleCheck extends Audit {
 
   /**
    * Return a generated user role object from a user config object.
+   *
+   * @param array $users
+   *   The user configuration object.
+   *
+   * @return array
+   *   An array of roles and users.
    */
   private function userObject($users = []) {
     $results = array();
