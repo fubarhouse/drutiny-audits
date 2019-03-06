@@ -20,6 +20,19 @@ use Drutiny\Annotation\Param;
 class UserRoleCheck extends Audit {
 
   /**
+   * Return a generated user role object from a user config object.
+   */
+  private function userObject($users = []) {
+    $results = array();
+    foreach ($users as $userKey => $user) {
+      foreach($user['roles'] as $role) {
+        $results[$role] = $user;
+      }
+    }
+    return $results;
+  }
+
+  /**
    * @inheritdoc
    */
   public function audit(Sandbox $sandbox) {
@@ -45,16 +58,11 @@ class UserRoleCheck extends Audit {
     }
 
     // Generate results
-    foreach ($users as $userKey => $user) {
-      foreach($user['roles'] as $role) {
-        foreach ($rolesToFind as $roleToFind) {
-          foreach ($allowedUserIDs as $allowedUserID) {
-            if ($user['uid'] !== $allowedUserID) {
-              if ($role == $roleToFind) {
-                $results[] = "User {$user['name']} ({$user['uid']}) is in the ${role} group.";
-              }
-            }
-          }
+    $users = $this->userObject($users);
+    foreach ($users as $user) {
+      foreach ($rolesToFind as $roleToFind) {
+        if (in_array($roleToFind, $user['roles'])) {
+          $results[] = "User {$user['name']} ({$user['uid']}) is in the {$roleToFind} group.";
         }
       }
     }
