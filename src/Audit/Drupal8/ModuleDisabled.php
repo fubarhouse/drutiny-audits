@@ -23,22 +23,27 @@ class ModuleDisabled extends Audit implements RemediableInterface {
   public function audit(Sandbox $sandbox) {
     $module = $sandbox->getParameter('module');
     try {
-      if ($sandbox->drush()->moduleEnabled($module)) {
-
+      // If the specified module is not enabled:
+      if (!$sandbox->drush()->moduleEnabled($module)) {
+        // Check the list of modules to see if it's there:
         $moduleList = $sandbox->drush()->pmList();
-        var_dump((bool) strpos($moduleList, "({$module})"));
-        if ((bool) strpos($moduleList, "({$module})") === TRUE) {
-          return Audit::NOT_APPLICABLE;
+        if ((bool) strpos($moduleList, "({$module})") !== TRUE) {
+          // If it's not in the list and it's not relevant:
+          return Audit::IRRELEVANT;
         }
         else {
-          throw new \Exception($module);
-          return FALSE;
+          // If it's in the list and it's not enabled, we have our desired state.
+          return TRUE;
         }
 
       }
+      else {
+        // It is enabled, which is not expected.
+        throw new \Exception($module);
+      }
     }
     catch (\Exception $e) {
-      return TRUE;
+      return FALSE;
     }
 
     // This should be unreachable, assume fail if it is reached.
