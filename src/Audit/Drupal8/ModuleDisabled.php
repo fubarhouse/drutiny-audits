@@ -24,8 +24,17 @@ class ModuleDisabled extends Audit implements RemediableInterface {
     $module = $sandbox->getParameter('module');
     try {
       if ($sandbox->drush()->moduleEnabled($module)) {
-        throw new \Exception($module);
-        return FALSE;
+
+        $moduleList = $sandbox->drush()->pmList();
+        var_dump((bool) strpos($moduleList, "({$module})"));
+        if ((bool) strpos($moduleList, "({$module})") === TRUE) {
+          return Audit::NOT_APPLICABLE;
+        }
+        else {
+          throw new \Exception($module);
+          return FALSE;
+        }
+
       }
     }
     catch (\Exception $e) {
