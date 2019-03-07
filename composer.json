@@ -7,6 +7,7 @@
     "autoload": {
         "psr-4": {
             "Drutiny\\Fubarhouse\\": "src/",
+            "Drutiny\\Fubarhouse\\Audit\\Drupal\\": "src/Audit/Drupal/",
             "Drutiny\\Fubarhouse\\Audit\\Drupal7\\": "src/Audit/Drupal7/",
             "Drutiny\\Fubarhouse\\Audit\\Drupal8\\": "src/Audit/Drupal8/"
         }
