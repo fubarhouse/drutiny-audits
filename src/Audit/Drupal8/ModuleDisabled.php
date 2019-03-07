@@ -40,8 +40,8 @@ class ModuleDisabled extends Audit implements RemediableInterface {
    * @inheritdoc
    */
   public function remediate(Sandbox $sandbox) {
-    $modules = $sandbox->getParameter('module');
-    $sandbox->drush()->en($module, '-y');
+    $module = $sandbox->getParameter('module');
+    $sandbox->drush()->pmu($module, '-y');
     return $this->audit($sandbox);
   }
 
