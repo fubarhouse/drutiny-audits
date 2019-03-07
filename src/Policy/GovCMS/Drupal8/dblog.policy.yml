@@ -1,0 +1,12 @@
+title: DBLog
+class: \Drutiny\Fubarhouse\Audit\Drupal8\ModuleDisabled
+name: GovCMSD8:DBLog
+tags:
+  - Compliance
+description: Ensure the DBLog module is not enabled.
+remediation: Uninstall the DBLog module into your codebase.
+success: DBLog module is not enabled.
+failure: DBLog module is enabled.
+parameters:
+  module:
+    default: dblog

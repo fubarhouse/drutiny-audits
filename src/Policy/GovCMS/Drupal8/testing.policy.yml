@@ -1,0 +1,12 @@
+title: Testing
+class: \Drutiny\Fubarhouse\Audit\Drupal8\ModuleDisabled
+name: GovCMSD8:Testing
+tags:
+  - Compliance
+description: Ensure the Testing module is not enabled.
+remediation: Uninstall the Testing module into your codebase.
+success: Testing module is not enabled.
+failure: Testing module is enabled.
+parameters:
+  module:
+    default: testing

@@ -1,0 +1,12 @@
+title: PHP
+class: \Drutiny\Fubarhouse\Audit\Drupal8\ModuleDisabled
+name: GovCMSD8:PHP
+tags:
+  - Compliance
+description: Ensure the PHP module is not enabled.
+remediation: Uninstall the PHP module into your codebase.
+success: PHP module is not enabled.
+failure: PHP module is enabled.
+parameters:
+  module:
+    default: php

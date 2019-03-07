@@ -1,0 +1,12 @@
+title: Update
+class: \Drutiny\Fubarhouse\Audit\Drupal8\ModuleDisabled
+name: GovCMSD8:Update
+tags:
+  - Compliance
+description: Ensure the Update module is not enabled.
+remediation: Uninstall the Update module into your codebase.
+success: Update module is not enabled.
+failure: Update module is enabled.
+parameters:
+  module:
+    default: update

@@ -1,0 +1,12 @@
+title: Statistics
+class: \Drutiny\Fubarhouse\Audit\Drupal8\ModuleEnabled
+name: GovCMSD8:Statistics
+tags:
+  - Compliance
+description: Ensure the Statistics module is enabled.
+remediation: Install and enable the Statistics module into your codebase.
+success: Statistics module is enabled.
+failure: Statistics module is not enabled.
+parameters:
+  module:
+    default: statistics
