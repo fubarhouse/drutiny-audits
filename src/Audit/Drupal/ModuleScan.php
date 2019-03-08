@@ -65,25 +65,24 @@ class ModuleScan extends Audit {
       ];
     }, $matches);
 
-    foreach ($matches[0] as $module) {
-
-      if ($result = $sandbox->drush(['format' => 'json', 'fields' => 'type'])->pmList()) {
-        if ($result[$module]['type'] === 'module' && !isset($modulesFound[$module])) {
-          $modulesFound[$module] = $module;
+    if ($result = $sandbox->drush(['format' => 'json', 'fields' => 'type'])->pmList()) {
+      foreach ($matches[0] as $module) {
+        if ($result[$module]['type'] === 'module') {
+          $modulesFound[] = $module;
         }
-        if ($result[$module]['type'] === 'theme' && !isset($themesFound[$module])) {
-          $themesFound[$module] = $module;
+        if ($result[$module]['type'] === 'theme') {
+          $themesFound[] = $module;
         }
       }
-      else {
-        return Audit::ERROR;
-      }
-
+    }
+    else {
+      return Audit::ERROR;
     }
 
-    $sandbox->setParameter('themesFound', $modulesFound);
-    $sandbox->setParameter('modulesFound', $themesFound);
-    return !isset($results['modules']);
+    $sandbox->setParameter('themesFound', $themesFound);
+    $sandbox->setParameter('modulesFound', $modulesFound);
+
+    return empty($modulesFound);
   }
 
 }
