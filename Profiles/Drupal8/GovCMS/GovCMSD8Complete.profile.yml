@@ -215,3 +215,5 @@ policies:
         - "fetchObject"
         - "fetchAssoc"
         - "countQuery"
+  Drupal8:ModuleScan:
+    severity: high
