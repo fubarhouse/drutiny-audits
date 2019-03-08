@@ -26,3 +26,4 @@ parameters:
     default: ""
     description: |
       Path to the directory to scan for nested modules and themes.
+      Leave as default ("") to dynamically detect the default theme path.

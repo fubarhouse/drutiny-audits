@@ -12,7 +12,7 @@ use Drutiny\Annotation\Param;
  *  name = "directory",
  *  description = "Absolute filepath to directory to scan",
  *  type = "string",
- *  default = "%default"
+ *  default = ""
  * )
  */
 class ModuleScan extends Audit {
