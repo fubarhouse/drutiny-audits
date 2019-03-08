@@ -4,9 +4,7 @@ namespace Drutiny\Fubarhouse\Audit\Drupal;
 
 use Drutiny\Audit;
 use Drutiny\Sandbox\Sandbox;
-use Drutiny\AuditResponse\AuditResponse;
 use Drutiny\Annotation\Param;
-use Drutiny\Annotation\Token;
 
 /**
  * Scan for modules and themes inside the default theme folder (or a specified directory).
