@@ -66,7 +66,7 @@ policies:
       blacklist : '(admin|root|drupal|god|govcms|paul|sean|ruwan)'
       email : 'no_reply@govcms.gov.au'
   #
-  Drupal-8:UserRegistrationAdminOnly:
+  GovCMSD8:UserRegistrationAdminOnly:
     severity: normal
   Drupal8:UserRoleCollector:
     severity: high
