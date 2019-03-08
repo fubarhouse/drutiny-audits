@@ -30,7 +30,10 @@ class ModuleScan extends Audit {
     $modulesFound = array();
     $themesFound = array();
 
-    $directory = $sandbox->getParameter('directory', "$rootPath/$themePath");
+    $directory = $sandbox->getParameter('directory', "");
+    if ($directory === '') {
+      $directory = "$rootPath/$themePath";
+    }
 
     $types = array('info', 'module', 'theme', 'info.yml');
     $command = ['find', $directory, '-type f'];
