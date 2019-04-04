@@ -1,0 +1,8 @@
+title: 'GovCMS Drupal 8 Isolation Audit'
+format:
+  html:
+    template: govcms-page
+policies:
+  # Modules
+  Drupal8:UserIsAdminCheck:
+    severity: normal
