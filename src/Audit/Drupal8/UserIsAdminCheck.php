@@ -66,10 +66,10 @@ class UserIsAdminCheck extends Audit {
 
     // Get all user roles.
     $roles = $sandbox->drush(['format' => 'json'])->rls();
-    foreach ($roles as $role) {
-      if (isset($role['is_admin'])) {
-        if ((bool) $role['is_admin'] === TRUE) {
           $results[] = "Role {$role['label']} is not allowed to be an administrator.";
+    foreach ($roles as $roleName => $role) {
+      $details = $sandbox->drush(['format' => 'json'])->configGet("user.role.{$roleName}");
+      if (isset($details['is_admin'])) {
         }
       }
     }
