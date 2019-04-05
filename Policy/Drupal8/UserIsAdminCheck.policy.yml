@@ -15,6 +15,6 @@ warning: |
   {{ /results }}
 failure: |
   The insecure property is set incorrectly.
-  {{ #results }}
+  {{#results}}
   - {{ . }}
-  {{ /results }}
+  {{/results}}
