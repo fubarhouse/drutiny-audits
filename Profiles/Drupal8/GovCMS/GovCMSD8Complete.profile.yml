@@ -4,20 +4,7 @@ format:
     template: govcms-page
 policies:
   # Modules
-  Drupal8:ModulesDisabled:
-    severity: high
-    parameters:
-      modules:
-        - clamav
-        - googleanalytics
-        - govcms_account_security
-        - govcms_password_policy
-        - govcms_tweaks
-        - password_policy
-        - robotstxt
-        - seckit
-        - shield
-        - lagoon_logs
+  GovCMSD8:SysLog:
   GovCMSD8:SysLog:
     severity: normal
   GovCMSD8:DBLog:
@@ -70,8 +57,6 @@ policies:
     severity: normal
   Drupal8:UserRoleCollector:
     severity: high
-  Drupal-7:PSA-2016-003:
-    severity: high
 
   #  # Performance
   Drupal-8:CssAggregation:
@@ -80,50 +65,8 @@ policies:
     severity: normal
   Drupal-8:ErrorLevel:
     severity: normal
-  Drupal-7:ImageDerivatives:
-    severity: normal
-  Drupal-7:CacheLifetime:
-    severity: normal
-  Drupal-7:PageCacheMaximumAge:
-    severity: normal
-    parameters:
-      value : 300
-  Drupal-7:Search404ModuleDisabled:
-    severity: normal
-  Drupal8:CronLast:
-    severity: normal
-  Drupal-7:PoorMansCronDisabled:
-    severity: normal
-  Drupal-7:ViewsCache:
-    severity: normal
-  Drupal-7:ViewsPagination:
-    severity: normal
-    parameters:
-      limit : 100
-
-  #  # GovCMS specific
-  #  govCMS-D7:GoogleAnalyticsAccount:
-  #    severity: normal
-  #  govCMS-D7:PageviewsTracker:
-  #    severity: normal
-  #  govCMS-D7:RobotsTxt:
-  #    severity: low
-  #  govCMS-D7:DefaultDateTimezone:
-  #    severity: low
-  Drupal-7:XMLSitemapBaseURL:
-    severity: low
-    parameters:
-      value : '^https://(www|ministerial|agency|blog|docs|annualreport|innovation|soe|news)\.[-a-z]{1,63}(\.[-a-z]{1,63})?\.gov\.au$'
-  #  govCMS-D7:PageviewsTracker:
-  #    severity: normal
-  #  govCMS-D7:Services:
-  #    severity: normal
-  #  govCMS-D7:MaliciousWebformUpload:
-  #    severity: normal
   GovCMSD8:Shield:
     severity: low
-  #  # govCMS-D7:NoSiteFactoryThemeReference:
-  #  #   severity: normal
 
   #  # Housekeeping
   Drupal:updates:
@@ -133,12 +76,6 @@ policies:
     parameters:
       max_size : 1000
       warning_size : 250
-  Drupal-7:MissingModules:
-    severity: normal
-  Drupal-7:InstallTaskCompleted:
-    severity: normal
-  Drupal-7:ZenRegistryRebuild:
-    severity: normal
   fs:largeFiles:
     severity: normal
     parameters:
