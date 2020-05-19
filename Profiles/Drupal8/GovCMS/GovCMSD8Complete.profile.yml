@@ -20,6 +20,8 @@ policies:
     severity: normal
 
   # permissions
+  UserIsAdminCheck:
+    severity: critical
   Drupal8:PermissionsBlackList:
     severity: critical
     parameters:
