@@ -5,7 +5,6 @@ format:
 policies:
   # Modules
   GovCMSD8:SysLog:
-  GovCMSD8:SysLog:
     severity: normal
   GovCMSD8:DBLog:
     severity: normal
